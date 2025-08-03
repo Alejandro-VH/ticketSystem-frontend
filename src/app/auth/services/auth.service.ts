@@ -14,8 +14,14 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/login`, body);
   }
 
-  register(name: string, email: string, password: string) {
-    const body = { name, email, password };
+  register(name: string, email: string, password: string, password_confirmation: string) {
+    const body = { name, email, password, password_confirmation };
     return this.http.post(`${this.baseUrl}/register`, body);
+  }
+
+  logout () {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    return this.http.post(`${this.baseUrl}/logout`, {});
   }
 }
