@@ -1,20 +1,38 @@
-<div class="flex justify-center items-center h-screen bg-blue-500">
-    <div class="bg-white w-100 rounded-md p-8 shadow-lg">
+<div class="min-h-screen bg-blue-500 flex items-center justify-center px-4">
+    <div class="bg-white rounded-md shadow-lg p-6 w-full max-w-md">
         <h1 class="text-2xl block text-center font-bold mb-4">Inicio de sesión</h1>
-        <form (ngSubmit)="onSubmit()">
-            <div class="mb-4">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <fieldset class="mb-2">
                 <label for="email" class="block text-base mb-2">Correo electronico</label>
                 <input [(ngModel)]="email" name="email" id="email" type="text" placeholder="usuario@ejemplo.com"
+                    required email #emailRef="ngModel"
                     class="border w-full p-2 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
-
-            </div>
-            <div class="mb-4">
+                <p class="text-red-500 text-sm min-h-[1.25rem]">
+                    <span *ngIf="emailRef.touched && emailRef.errors?.['required']">El correo es obligatorio</span>
+                </p>
+            </fieldset>
+            <fieldset class="mb-4">
                 <label for="password" class="block text-base mb-2">Contraseña</label>
-                <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="**********"
-                    class="border w-full p-2 mb-4 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
-            </div>
-            <div class="mb-2">
-                <button type="submit" class="bg-blue-500 text-white text-bold rounded px-4 py-2 justify-center w-full hover:bg-transparent hover:text-blue-500 border-blue-500 border-2">Ingresar</button>
+                <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="••••••••••"
+                    required #passwordRef="ngModel"
+                    class="border w-full p-2 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
+                <p class="text-red-500 text-sm min-h-[1.25rem]">
+                    <span *ngIf="passwordRef.touched && passwordRef.errors?.['required']">La contraseña es
+                        obligatoria</span>
+                </p>
+            </fieldset>
+            <fieldset class="mb-8">
+                <button type="submit"
+                    class="bg-blue-500 text-white text-bold rounded px-4 py-2 justify-center w-full hover:bg-transparent hover:text-blue-500 border-blue-500 border-2 transition-colors duration-300"
+                    style="cursor: pointer;" [disabled]="loginForm.invalid">Ingresar</button>
+                <p class="text-red-500 text-sm text-center" style="min-height: 1.25rem;">
+                    <span *ngIf="error">{{ error }}</span>
+                </p>
+            </fieldset>
+
+            <div class="text-center">
+                <p class="text-sm">¿No tienes cuenta? <a routerLink="/register"
+                        class="text-blue-500 hover:underline">Regístrate</a></p>
             </div>
         </form>
     </div>
