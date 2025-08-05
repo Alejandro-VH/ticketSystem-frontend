@@ -5,7 +5,7 @@
             <fieldset class="mb-2">
                 <label for="email" class="block text-base mb-2">Correo electronico</label>
                 <input [(ngModel)]="email" name="email" id="email" type="text" placeholder="usuario@ejemplo.com"
-                    required email #emailRef="ngModel"
+                    required email #emailRef="ngModel" autocomplete="email"
                     class="border w-full p-2 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
                 <p class="text-red-500 text-sm min-h-[1.25rem]">
                     <span *ngIf="emailRef.touched && emailRef.errors?.['required']">El correo es obligatorio</span>
@@ -13,7 +13,7 @@
             </fieldset>
             <fieldset class="mb-4">
                 <label for="password" class="block text-base mb-2">Contraseña</label>
-                <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="••••••••••"
+                <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="••••••••••" autocomplete="current-password"
                     required #passwordRef="ngModel"
                     class="border w-full p-2 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
                 <p class="text-red-500 text-sm min-h-[1.25rem]">
