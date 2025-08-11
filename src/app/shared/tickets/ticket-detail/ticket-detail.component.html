@@ -2,38 +2,47 @@
     <p class="text-gray-500">Cargando...</p>
 </div>
 
-<!-- ticket details -->
-<div *ngIf="ticket && !loading" class="mb-4 rounded-2xl p-4 px-100">
-    <div class="justify-between flex items-center mb-2">
-        <p class="font-bold">{{ ticket.user?.name }}</p>
-        <p class="text-gray-500">{{ ticket.created_at | date:'short' }}</p>
+<div *ngIf="!loading" class="bg-white rounded-2xl border border-gray-200 p-4 w-full max-w-5xl mx-auto mt-10">
+    <!-- ticket details -->
+    <div *ngIf="ticket" class="mb-4 rounded-2xl p-2">
+        <div class="justify-between flex items-center mb-2">
+            <p class="font-semibold">{{ ticket.user?.name }}</p>
+            <p class="text-gray-500">{{ ticket.created_at | date:'short' }}</p>
+        </div>
+        <h1 class="text-2xl font-bold">{{ ticket.title }}</h1>
+        <p class="text-base my-4">{{ ticket.description }}</p>
+        <p class="text-gray-500 text-sm">Estado: {{ getStatusText(ticket.status) }}</p>
+        <p class="text-gray-500 text-sm">Último cambio: {{ ticket.updated_at | date:'short' }}</p>
     </div>
-    <h1 class="text-2xl font-bold">{{ ticket.title }}</h1>
-    <p class="text-base">{{ ticket.description }}</p>
-    <p class="text-gray-500 text-sm">Estado: {{ getStatusText(ticket.status) }}</p>
-    <p class="text-gray-500 text-sm">Último cambio: {{ ticket.updated_at | date:'short' }}</p>
 </div>
+
 <!-- ticket answers -->
-<div *ngIf="responses && responses.length > 0 && !loading" class="px-100">
+<div *ngIf="responses && responses.length > 0 && !loading" class="w-full max-w-5xl mx-auto my-5">
     <ul>
-        <li *ngFor="let response of responses" class=" border border-black rounded-2xl my-5 p-2">
+        <li *ngFor="let response of responses" class="border border-gray-200 rounded-2xl p-4 bg-white">
             <div class="justify-between flex items-center mb-2">
-                <p class="font-bold">{{ response.user?.name }}</p>
-                <p class="text-gray-500">{{ response.created_at | date:'short' }}</p>
+                <p class="font-semibold">{{ response.user?.name }}</p>
+                <p class="text-base whitespace-pre-line text-gray-500">{{ response.created_at | date:'short' }}</p>
             </div>
-            <p class="text-gray-500">{{ response.message }}</p>
+            <p class="text-gray-700">{{ response.message }}</p>
         </li>
     </ul>
 </div>
-<!-- user answer -->
-<div class="px-100 mb-10 min-h-[1.25rem]" *ngIf="!loading">
-    <fieldset>
-        <textarea [(ngModel)]="message" cols="30" rows="5" placeholder="Escribe tu respuesta aquí..."
-            class="border rounded p-2 w-full text-base resize-none focus:outline-none focus:ring-0"></textarea>
-    </fieldset>
-    <fieldset>
-        <button (click)="submit()"
-            class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 w-full">Responder</button>
-    </fieldset>
-    <p *ngIf="error" class="text-red-500 text-sm mt-2">{{ error }}</p>
+
+<div *ngIf="!loading" class="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-5xl mx-auto">
+    <!-- user answer -->
+    <div class="mb-2">
+        <fieldset>
+            <textarea [(ngModel)]="message" cols="30" rows="5" placeholder="Escribe tu respuesta aquí..."
+                class="border border-gray-300 rounded p-2 w-full text-base resize-none focus:outline-none focus:ring-0"></textarea>
+        </fieldset>
+        <fieldset>
+            <button (click)="submit()"
+                class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 w-full">Responder</button>
+        </fieldset>
+        <div class="min-h-[1.25rem]">
+            <p *ngIf="error" class="text-red-500 text-sm mt-2">{{ error }}</p>
+        </div>
+
+    </div>
 </div>

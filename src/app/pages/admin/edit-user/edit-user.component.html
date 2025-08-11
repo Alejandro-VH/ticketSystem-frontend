@@ -3,16 +3,16 @@
 </div>
 
 <div class="items-center justify-center flex w-full" *ngIf="!loading">
-    <div class="bg-white rounded shadow-lg p-10 w-full max-w-dvh mt-10">
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-3xl mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-4 text-center">Editar usuario</h1>
         <form #userForm="ngForm" (ngSubmit)="onSubmit()">
             <fieldset class="mb-4">
-                <label for="title" class="block text-base">Nombre</label>
+                <label for="title" class="block text-base font-medium">Nombre</label>
                 <input type="text" [(ngModel)]="name" id="name" name="name" required
                     class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
             </fieldset>
             <fieldset class="mb-4">
-                <label for="email" class="block text-base">Email</label>
+                <label for="email" class="block text-base font-medium">Email</label>
                 <input [(ngModel)]="email" id="email" name="email" required
                     class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
             </fieldset>
@@ -25,7 +25,7 @@
                 </select>
             </fieldset>
             <fieldset class="mb-4">
-                <label for="status" class="block text-base">Estado</label>
+                <label for="status" class="block text-base font-medium">Estado</label>
                 <select id="status" [(ngModel)]="status" name="status" required class="border rounded p-2">
                     <option [ngValue]="1">Activo</option>
                     <option [ngValue]="0">Inactivo</option>

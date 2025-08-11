@@ -3,21 +3,21 @@
 </div>
 
 <div class="items-center justify-center flex w-full" *ngIf="!loading">
-    <div class="bg-white rounded shadow-lg p-10 w-full max-w-dvh mt-10">
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-3xl mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-4 text-center">Editar Ticket</h1>
         <form #ticketForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="mb-4">
-                <label for="title" class="block text-base">Título</label>
+                <label for="title" class="block text-base font-medium">Título</label>
                 <input type="text" [(ngModel)]="title" id="title" name="title" required
                     class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
             </div>
             <div class="mb-4">
-                <label for="description" class="block text-base">Descripción</label>
+                <label for="description" class="block text-base font-medium">Descripción</label>
                 <textarea [(ngModel)]="description" rows="5" cols="" id="description" name="description" required
                     class="border rounded p-2 w-full text-base resize-none focus:outline-none focus:ring-0"></textarea>
             </div>
             <div class="mb-4">
-                <label for="priority" class="block text-base">Prioridad</label>
+                <label for="priority" class="block text-base font-medium">Prioridad</label>
                 <select id="priority" [(ngModel)]="priority" name="priority" required class="border rounded mb-4 p-2">
                     <option value="low" selected>Baja</option>
                     <option value="medium">Media</option>
@@ -34,3 +34,5 @@
         </form>
     </div>
 </div>
+
+
