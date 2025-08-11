@@ -1,0 +1,43 @@
+<div *ngIf="loading" class="flex justify-center items-center h-64">
+    <p class="text-gray-500">Cargando...</p>
+</div>
+
+<div class="items-center justify-center flex w-full" *ngIf="!loading">
+    <div class="bg-white rounded shadow-lg p-10 w-full max-w-dvh mt-10">
+        <h1 class="text-2xl font-bold mb-4 text-center">Editar usuario</h1>
+        <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+            <fieldset class="mb-4">
+                <label for="title" class="block text-base">Nombre</label>
+                <input type="text" [(ngModel)]="name" id="name" name="name" required
+                    class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
+            </fieldset>
+            <fieldset class="mb-4">
+                <label for="email" class="block text-base">Email</label>
+                <input [(ngModel)]="email" id="email" name="email" required
+                    class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
+            </fieldset>
+            <fieldset class="mb-4">
+                <label for="role" class="block text-base">Rol</label>
+                <select id="role" [(ngModel)]="role_id" name="role" required class="border rounded p-2">
+                    <option [ngValue]="1">Administrador</option>
+                    <option [ngValue]="2">Soporte</option>
+                    <option [ngValue]="3">Usuario</option>
+                </select>
+            </fieldset>
+            <fieldset class="mb-4">
+                <label for="status" class="block text-base">Estado</label>
+                <select id="status" [(ngModel)]="status" name="status" required class="border rounded p-2">
+                    <option [ngValue]="1">Activo</option>
+                    <option [ngValue]="0">Inactivo</option>
+                </select>
+            </fieldset>
+            <fieldset class="mb-2">
+                <button [routerLink]="['/user/edit/', id]" type="submit" [disabled]="userForm.invalid"
+                    class="bg-blue-500 text-white px-3 py-1 rounded hoover:bg-blue-600 w-full">Editar usuario</button>
+            </fieldset>
+            <div class="min-h-[1.25rem]">
+                <p class="text-red-500 text-sm text-center" *ngIf="error">{{ error }}</p>
+            </div>
+        </form>
+    </div>
+</div>

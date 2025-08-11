@@ -1,0 +1,53 @@
+import { Component } from '@angular/core';
+import { TicketService } from '../../../services/ticket.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Ticket } from '../../../interfaces/ticket';
+
+@Component({
+  selector: 'app-edit-ticket',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterLink],
+  templateUrl: './edit-ticket.component.html',
+  styleUrl: './edit-ticket.component.css',
+})
+export class EditTicketComponent {
+  id: number;
+  title: string = '';
+  description: string = '';
+  priority: string = 'low';
+  error: string = '';
+  loading: boolean = true;
+
+  constructor(
+    private ticketService: TicketService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.id = activatedRoute.snapshot.params['id'];
+  }
+
+  ngOnInit() {
+    this.ticketService.getTicketById(this.id).subscribe({
+      next: (ticket: any) => {
+        this.title = ticket.data[0].title;
+        this.description = ticket.data[0].description;
+        this.priority = ticket.data[0].priority;
+        this.loading = false;
+      },
+      error: (err: any) => {
+        console.error('Error al cargar el ticket:', err);
+        this.error = 'Error al cargar el ticket';
+      },
+    });  }
+
+  onSubmit() {
+    this.ticketService
+      .updateTicket(this.id, { title: this.title, description: this.description, priority: this.priority })
+      .subscribe({
+        next: () => this.router.navigate(['/home']),
+        error: (err) => (this.error = err),
+      });
+  }
+}
