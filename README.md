@@ -62,6 +62,35 @@ src/
 ├── app.config.ts        # Archivo de configuración general
 └── app.routes.ts        # Rutas de la aplicación
 ```
+## 📸 Capturas de pantalla
+_Pantalla de inicio de sesión_
+![Login](images/login.png)  
+
+_Pantalla de registro_
+![Register](images/register.png)  
+
+_Vista principal para usuarios_
+![Dashboard usuario](images/userHome.png) 
+
+_Formulario para crear tickets_
+![Crear ticket](images/createTicket.png)  
+
+_Vista principal para equipo de soporte_
+![Dashboard soporte](images/supportDashboard.png)  
+
+_Formulario para editar tickets_
+![Editar ticket](images/editTicket.png)  
+
+_Vista principal para administradores_
+![Dashboard administrador](images/adminDashboard.png)  
+
+_Formulario para editar usuarios_
+![Editar usuario](images/editUser.png)  
+
+## 🔮 Futuras mejoras
+- [ ] Realizar una demo online independiente del
+- [ ] Organizar de mejor manera las tablas que contienen usuarios y tickets
+- [ ] Agregar paginación a las tablas
 
 ## 👤 Autor
 #### Alejandro Villarroel
