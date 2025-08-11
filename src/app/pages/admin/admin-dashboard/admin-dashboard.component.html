@@ -1,0 +1,48 @@
+<div class="px-100 py-4">
+    <h1 class="text-2xl font-bold">Panel de Administración</h1>
+    <p class="text-gray-500">Bienvenido {{ userName }}. Aquí puedes gestionar los usuarios.</p>
+
+    <!-- user card -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Usuarios totales</h2>
+            <p class="text-gray-500">{{ totalUsers }}</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Soporte</h2>
+            <p class="text-gray-500">{{ supportCount }}</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Administradores</h2>
+            <p class="text-gray-500">{{ adminCount }}</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Clientes</h2>
+            <p class="text-gray-500">{{ userCount }}</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- tabla de usuarios -->
+<div class="px-100" *ngIf="!loading && users.length > 0">
+    <table class=" bg-white shadow-lg w-full border border-gray-200">
+        <tr class="bg-gray-100">
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Nombre</th>
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Email</th>
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Rol</th>
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Acciones</th>
+        </tr>
+        <tr *ngFor="let user of users" class="border-b hover:bg-gray-100">
+            <td class="px-6 py-2 text-sm text-gray-800">{{ user.name }}</td>
+            <td class="px-6 py-2 text-sm text-gray-800">{{ user.email }}</td>
+            <td class="px-6 py-2 text-sm text-gray-800">{{ getRoleText(user.role_id) }}</td>
+            <td class="px-6 py-2 text-sm text-gray-800">
+                <button [routerLink]="['/user/edit', user.id]" class="bg-amber-300 hover:bg-amber-400 text-white px-3 py-1 rounded transition-colors mr-5">Editar</button>
+                <button class="rounded text-white px-3 py-1 transition-colors" [ngClass]="{ 'bg-green-500 hover:bg-green-600': user.is_enabled,
+                    'bg-red-500 hover:bg-red-600': !user.is_enabled}"
+                    (click)="toggleUserEnabled(user)">{{ user.is_enabled ? 'Deshabilitar' : 'Habilitar' }}</button>
+            </td>
+        </tr>
+    </table>
+</div>
