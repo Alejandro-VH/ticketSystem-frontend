@@ -15,6 +15,7 @@ export class LoginComponent {
   email: string = "";
   password: string = "";
   error: string = "";
+  showPasswords: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -23,18 +24,22 @@ export class LoginComponent {
       next: (response: any) => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        if (response.data.user.role_id == 1) {
-          this.router.navigate(['/admin']);
-        } else if (response.data.user.role_id == 2) {
-          this.router.navigate(['/support']);
-        } else {
-          this.router.navigate(['/user']);
-        }
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         console.error(err);
-        this.error = "Correo o contraseña incorrectos";
+        if(err.status === 401) {
+          this.error = "Correo o contraseña incorrectos";
+        } else if (err.status === 403) {
+          this.error = "Usuario no habilitado, contacte a administración";
+        } else {
+          this.error = "Error al iniciar sesión";
+        }
       }
     });
+  }
+
+    togglePasswordsVisibility() {
+    this.showPasswords = !this.showPasswords;
   }
 }
