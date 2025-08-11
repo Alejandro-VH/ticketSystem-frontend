@@ -1,0 +1,4 @@
+<nav *ngIf="showNavbar()" class="bg-blue-500 shadow-md p-4 flex justify-between items-center">
+  <img src="assets/icons/favicon.svg" alt="Logo" class="h-12 w-auto cursor-pointer" (click)="goHome()"/>
+    <button (click)="logout()" class="text-red-500 hover:underline">Cerrar sesión</button>
+</nav>
