@@ -88,7 +88,7 @@ _Formulario para editar usuarios_
 ![Editar usuario](images/editUser.png)  
 
 ## 🔮 Futuras mejoras
-- [ ] Realizar una demo online independiente del
+- [ ] Realizar una demo online
 - [ ] Organizar de mejor manera las tablas que contienen usuarios y tickets
 - [ ] Agregar paginación a las tablas
 
