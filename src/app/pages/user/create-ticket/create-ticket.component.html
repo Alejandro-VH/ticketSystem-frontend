@@ -1,0 +1,32 @@
+<div class="items-center justify-center flex w-full">
+    <div class="bg-white rounded shadow-lg p-10 w-full max-w-dvh mt-10">
+        <h1 class="text-2xl font-bold mb-4 text-center">Crear Ticket</h1>
+        <form #ticketForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label for="title" class="block text-base">Título</label>
+                <input type="text" [(ngModel)]="title" id="title" name="title" required
+                    class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-base">Descripción</label>
+                <textarea [(ngModel)]="description" rows="5" cols="" id="description" name="description" required
+                    class="border rounded p-2 w-full text-base resize-none focus:outline-none focus:ring-0"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="priority" class="block text-base">Prioridad</label>
+                <select id="priority" [(ngModel)]="priority" name="priority" required class="border rounded mb-4 p-2">
+                    <option value="low" selected>Baja</option>
+                    <option value="medium">Media</option>
+                    <option value="high">Alta</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <button type="submit" [disabled]="ticketForm.invalid" class="bg-blue-500 text-white px-3 py-1 rounded hoover:bg-blue-600 w-full">Crear
+                    Ticket</button>
+            </div>
+            <div class="min-h-[1.25rem]">
+                <p class="text-red-500 text-sm text-center" *ngIf="error">{{ error }}</p>
+            </div>
+        </form>
+    </div>
+</div>
