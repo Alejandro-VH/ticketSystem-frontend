@@ -1,0 +1,57 @@
+<!-- Mensajes de carga -->
+<div *ngIf="loading" class="text-center text-gray-600 my-4 text-sm">Cargando tickets...</div>
+<div *ngIf="!loading && tickets.length === 0" class="text-center text-gray-500 my-4 text-sm">No hay tickets abiertos.
+</div>
+
+<div class="px-100 py-4" *ngIf="!loading && tickets.length > 0">
+    <h1 class="text-2xl font-bold">Panel de Soporte</h1>
+    <p class="text-gray-500">Bienvenido {{ userName }}. Aquí puedes gestionar los tickets.</p>
+
+    <!-- ticket card -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Total Tickets</h2>
+            <p class="text-gray-500">{{ totalTickets }}</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Tickets Pendientes</h2>
+            <p class="text-gray-500">{{ pendingTickets }}</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Tickets En Progreso</h2>
+            <p class="text-gray-500">{{ inProgressTickets }}</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+            <h2 class="font-bold text-lg">Tickets Resueltos</h2>
+            <p class="text-gray-500">{{ resolvedTickets }}</p>
+        </div>
+    </div>
+
+</div>
+
+    <!-- tabla de tickets -->
+<div class="px-100" *ngIf="!loading && tickets.length > 0">
+    <table class=" bg-white shadow-lg w-full border border-gray-200">
+        <tr class="bg-gray-100">
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Título</th>
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Estado</th>
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Fecha</th>
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Prioridad</th>
+            <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Acciones</th>
+        </tr>
+
+        <tr *ngFor="let ticket of tickets" class="border-b hover:bg-gray-100">
+            <td class="px-6 py-2 text-sm text-gray-800">{{ ticket.title }}</td>
+            <td class="px-6 py-2 text-sm text-gray-800 rounded" [ngClass]="getStatusClass(ticket.status)">{{ getStatusText(ticket.status) }}</td>
+            <td class="px-6 py-2 text-sm text-gray-800">{{ ticket.created_at| date }}</td>
+            <td class="px-6 py-2 text-sm text-gray-800">{{ getPriorityText(ticket.priority) }}</td>
+            <td class="px-6 py-2 text-sm text-gray-800">
+                <button [routerLink]="['/ticket/edit', ticket.id]" class="bg-amber-300 hover:bg-amber-400 text-white px-3 py-1 rounded transition-colors mr-5">Editar</button>
+                <button [routerLink]="['/ticket', ticket.id]"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors">
+                    Ver
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
