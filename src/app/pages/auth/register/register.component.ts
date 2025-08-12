@@ -22,6 +22,13 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+
+    this.checkInputLarge();
+
+    if (this.error) {
+      return;
+    }
+
     if (this.password !== this.password_confirmation) {
       this.error = "Las contraseñas no coinciden";
       this.password_matched = false;
@@ -46,5 +53,28 @@ export class RegisterComponent {
 
   togglePasswordsVisibility() {
     this.showPasswords = !this.showPasswords;
+  }
+
+  checkInputLarge() {
+    if (this.name.length < 3) {
+      this.error = 'El nombre debe tener al menos 3 caracteres';
+      return;
+    }
+
+    if (this.password.length < 8) {
+      this.error = 'La contraseña debe tener al menos 8 caracteres';
+      return;
+    }
+
+    if (this.name.length > 30) {
+      this.error = 'El nombre debe tener como máximo 30 caracteres';
+      return;
+    }
+
+    if (this.password.length > 20) {
+      this.error = 'La contraseña debe tener como máximo 20 caracteres';
+      return;
+    }
+    this.error = '';
   }
 }

@@ -14,7 +14,6 @@ import { User } from '../../../interfaces/user';
 export class EditUserComponent {
   id: number;
   name: string = '';
-  email: string = '';
   role_id: number = 0;
   status: number = 0;
   error: string = '';
@@ -27,7 +26,6 @@ export class EditUserComponent {
     this.userService.getUser(this.id).subscribe({
       next: (user: any) => {
         this.name = user.data[0].name;
-        this.email = user.data[0].email;
         this.role_id = user.data[0].role_id;
         this.status = user.data[0].is_enabled;
         this.loading = false;
@@ -38,12 +36,32 @@ export class EditUserComponent {
   }
 
   onSubmit() {
-    this.userService.updateUser(this.id, { name: this.name, email: this.email, role_id: this.role_id, is_enabled: this.status }).subscribe({
+    this.checkInputLarge();
+
+    if (this.error) {
+      return;
+    }
+
+    this.userService.updateUser(this.id, { name: this.name, role_id: this.role_id, is_enabled: this.status }).subscribe({
         next: (res: any) =>{
           console.log('Usuario actualizado con éxito:', res);
           this.router.navigate(['/home']);
         },
         error: (err) => (this.error = err),
       });
+  }
+
+    checkInputLarge() {
+    if (this.name.length < 3) {
+      this.error = 'El nombre debe tener al menos 3 caracteres';
+      return;
+    }
+
+    if (this.name.length > 70) {
+      this.error = 'El nombre debe tener como máximo 70 caracteres';
+      return;
+    }
+
+    this.error = '';
   }
 }

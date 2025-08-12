@@ -5,12 +5,13 @@
             <fieldset>
                 <label for="name" class="block text-base mb-2">Nombre completo</label>
                 <input [(ngModel)]="name" name="name" id="name" type="text" placeholder="Ingrese su nombre completo"
-                    required #nameRef="ngModel" autocomplete="name" minlength="3"
+                    required #nameRef="ngModel" minlength="3" maxlength="40"
                     class="border w-full p-2 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
                 <p class="text-red-500 text-sm min-h-[1.25rem]">
                     <span *ngIf="nameRef.touched && nameRef.errors">
                         <span *ngIf="nameRef.errors?.['required']">El nombre es obligatorio</span>
                         <span *ngIf="nameRef.errors?.['minlength']">Debe tener al menos 3 caracteres</span>
+                        <span *ngIf="nameRef.errors?.['maxlength']">El nombre debe tener como máximo 40 caracteres</span>
                     </span>
                 </p>
             </fieldset>
@@ -30,13 +31,16 @@
                 <label for="password" class="block text-base mb-2">Contraseña</label>
                 <input [(ngModel)]="password" name="password" id="password" type="password" placeholder="••••••••••"
                     [type]="showPasswords ? 'text' : 'password'" required #passwordRef="ngModel"
-                    autocomplete="new-password" minlength="8"
+                    autocomplete="new-password" minlength="8" maxlength="20"
                     class="border w-full p-2 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
                 <p class="text-red-500 text-sm min-h-[1.25rem]">
                     <span *ngIf="passwordRef.touched && passwordRef.errors">
                         <span *ngIf="passwordRef.errors['required']">La contraseña es obligatoria</span>
                         <span *ngIf="passwordRef.errors['minlength']">
                             Debe tener al menos {{ passwordRef.errors['minlength'].requiredLength }} caracteres
+                        </span>
+                        <span *ngIf="passwordRef.errors['maxlength']">
+                            Debe tener como máximo {{ passwordRef.errors['maxlength'].requiredLength }} caracteres
                         </span>
                     </span>
                 </p>
@@ -45,7 +49,7 @@
                 <label for="confirmPassword" class="block text-base mb-2">Confirmar contraseña</label>
                 <input [(ngModel)]="password_confirmation" name="confirmPassword" id="confirmPassword" type="password"
                     placeholder="••••••••••" [type]="showPasswords ? 'text' : 'password'" required
-                    #confirmPasswordRef="ngModel" autocomplete="new-password"
+                    #confirmPasswordRef="ngModel" autocomplete="new-password" minlength="8" maxlength="20"
                     class="border w-full p-2 rounded text-base focus:outline-none focus:ring-0 placeholder-zinc-500">
                 <p class="text-red-500 text-sm min-h-[1.25rem]">
                     <span *ngIf="confirmPasswordRef.touched && confirmPasswordRef.errors">
@@ -53,6 +57,9 @@
                             obligatoria</span>
                         <span *ngIf="confirmPasswordRef.errors['minlength']">
                             Debe tener al menos 8 caracteres
+                        </span>
+                        <span *ngIf="confirmPasswordRef.errors['maxlength']">
+                            Debe tener como máximo {{ confirmPasswordRef.errors['maxlength'].requiredLength }} caracteres
                         </span>
                     </span>
                 </p>

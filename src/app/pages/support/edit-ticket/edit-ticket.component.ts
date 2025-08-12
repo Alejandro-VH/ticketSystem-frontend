@@ -40,14 +40,48 @@ export class EditTicketComponent {
         console.error('Error al cargar el ticket:', err);
         this.error = 'Error al cargar el ticket';
       },
-    });  }
+    });
+  }
 
   onSubmit() {
+    this.checkInputLarge();
+
+    if (this.error) {
+      return;
+    }
+
     this.ticketService
-      .updateTicket(this.id, { title: this.title, description: this.description, priority: this.priority })
+      .updateTicket(this.id, {
+        title: this.title,
+        description: this.description,
+        priority: this.priority,
+      })
       .subscribe({
         next: () => this.router.navigate(['/home']),
         error: (err) => (this.error = err),
       });
+  }
+
+  checkInputLarge() {
+    if (this.title.trim().length < 3) {
+      this.error = 'El título debe tener al menos 3 caracteres';
+      return;
+    }
+
+    if (this.description.trim().length < 5) {
+      this.error = 'La descripción debe tener al menos 5 caracteres';
+      return;
+    }
+
+    if (this.title.trim().length > 60) {
+      this.error = 'El título debe tener como máximo 60 caracteres';
+      return;
+    }
+
+    if (this.description.trim().length > 1000) {
+      this.error = 'La descripción debe tener como máximo 1000 caracteres';
+      return;
+    }
+    this.error = '';
   }
 }

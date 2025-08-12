@@ -4,13 +4,21 @@
         <form #ticketForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="mb-4">
                 <label for="title" class="block text-base font-medium">Título</label>
-                <input type="text" [(ngModel)]="title" id="title" name="title" required
+                <input type="text" #titleRef="ngModel" [(ngModel)]="title" id="title" name="title" required
                     class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
+                <p class="text-red-500 text-sm min-h-[1.25rem]">
+                    <span *ngIf="titleRef.touched && titleRef.errors?.['required']">El título es obligatorio</span>
+                </p>
             </div>
             <div class="mb-4">
                 <label for="description" class="block text-base font-medium">Descripción</label>
-                <textarea [(ngModel)]="description" rows="5" cols="" id="description" name="description" required
+                <textarea #descriptionRef="ngModel" [(ngModel)]="description" rows="5" cols="" id="description"
+                    name="description" required
                     class="border rounded p-2 w-full text-base resize-none focus:outline-none focus:ring-0"></textarea>
+                <p class="text-red-500 text-sm min-h-[1.25rem]">
+                    <span *ngIf="descriptionRef.touched && descriptionRef.errors?.['required']">La descripción es
+                        obligatoria</span>
+                </p>
             </div>
             <div class="mb-4">
                 <label for="priority" class="block text-base font-medium">Prioridad</label>
@@ -21,7 +29,8 @@
                 </select>
             </div>
             <div class="mb-2">
-                <button type="submit" [disabled]="ticketForm.invalid" class="bg-blue-500 text-white px-3 py-1 rounded hoover:bg-blue-600 w-full">Crear
+                <button type="submit" [disabled]="ticketForm.invalid"
+                    class="bg-blue-500 text-white px-3 py-1 rounded hoover:bg-blue-600 w-full">Crear
                     Ticket</button>
             </div>
             <div class="min-h-[1.25rem]">

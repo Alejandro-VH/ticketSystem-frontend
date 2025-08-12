@@ -8,13 +8,15 @@
         <form #userForm="ngForm" (ngSubmit)="onSubmit()">
             <fieldset class="mb-4">
                 <label for="title" class="block text-base font-medium">Nombre</label>
-                <input type="text" [(ngModel)]="name" id="name" name="name" required
+                <input type="text" [(ngModel)]="name" id="name" name="name" required minlength="3" maxlength="40" #nameRef="ngModel"
                     class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
-            </fieldset>
-            <fieldset class="mb-4">
-                <label for="email" class="block text-base font-medium">Email</label>
-                <input [(ngModel)]="email" id="email" name="email" required
-                    class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
+                                <p class="text-red-500 text-sm min-h-[1.25rem]">
+                    <span *ngIf="nameRef.touched && nameRef.errors">
+                        <span *ngIf="nameRef.errors?.['required']">El nombre es obligatorio</span>
+                        <span *ngIf="nameRef.errors?.['minlength']">Debe tener al menos 3 caracteres</span>
+                        <span *ngIf="nameRef.errors?.['maxlength']">El nombre debe tener como máximo 40 caracteres</span>
+                    </span>
+                </p>
             </fieldset>
             <fieldset class="mb-4">
                 <label for="role" class="block text-base">Rol</label>

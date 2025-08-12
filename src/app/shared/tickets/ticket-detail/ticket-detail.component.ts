@@ -22,7 +22,7 @@ export class TicketDetailComponent {
   loading: boolean = true;
   fetchingTickets: boolean = true;
   fetchingResponses: boolean = true;
-  
+
   constructor(
     private ticketService: TicketService,
     activatedRoute: ActivatedRoute,
@@ -37,7 +37,8 @@ export class TicketDetailComponent {
   ngOnInit(): void {
     this.ticketService.getTicketById(this.id).subscribe({
       next: (response: any) => {
-        this.ticket = response.data.length > 0 ? response.data[0] : ({} as Ticket);
+        this.ticket =
+          response.data.length > 0 ? response.data[0] : ({} as Ticket);
         this.fetchingTickets = false;
         this.checkIfReady();
       },
@@ -65,12 +66,10 @@ export class TicketDetailComponent {
 
   submit(): void {
     if (this.message) {
-      if (!this.message || this.message.trim().length < 10) {
-        this.error = 'La respuesta debe tener al menos 10 caracteres.';
+      this.checkInputLarge();
+      if (this.error) {
         return;
       }
-
-      this.error = '';
 
       this.responseService.createResponse(this.message, this.id).subscribe({
         next: (response: any) => {
@@ -80,7 +79,7 @@ export class TicketDetailComponent {
           console.error('Error creating response:', err);
         },
       });
-      
+
       this.responseService.getResponsesByTicketId(this.id).subscribe({
         next: (response: any) => {
           this.responses = response.data;
@@ -111,5 +110,18 @@ export class TicketDetailComponent {
       default:
         return status;
     }
+  }
+
+  checkInputLarge() {
+    if (this.message.trim().length < 5) {
+      this.error = 'La respuesta debe tener al menos 5 caracteres';
+      return;
+    }
+
+    if (this.message.trim().length > 600) {
+      this.error = 'La respuesta debe tener como máximo 600 caracteres';
+      return;
+    }
+    this.error = '';
   }
 }

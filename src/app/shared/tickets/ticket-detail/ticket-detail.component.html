@@ -2,24 +2,24 @@
     <p class="text-gray-500">Cargando...</p>
 </div>
 
-<div *ngIf="!loading" class="bg-white rounded-2xl border border-gray-200 p-4 w-full max-w-5xl mx-auto mt-10">
+<div *ngIf="!loading" class="bg-white rounded-2xl border border-gray-200 p-2 w-full max-w-5xl mx-auto mt-10">
     <!-- ticket details -->
-    <div *ngIf="ticket" class="mb-4 rounded-2xl p-2">
-        <div class="justify-between flex items-center mb-2">
+    <div *ngIf="ticket" class="rounded-2xl p-2">
+        <div class="justify-between flex items-center">
             <p class="font-semibold">{{ ticket.user?.name }}</p>
             <p class="text-gray-500">{{ ticket.created_at | date:'short' }}</p>
         </div>
-        <h1 class="text-2xl font-bold">{{ ticket.title }}</h1>
-        <p class="text-base my-4">{{ ticket.description }}</p>
+        <h1 class="text-2xl font-bold break-words">{{ ticket.title }}</h1>
+        <p class="text-base my-4 break-words">{{ ticket.description }}</p>
         <p class="text-gray-500 text-sm">Estado: {{ getStatusText(ticket.status) }}</p>
         <p class="text-gray-500 text-sm">Último cambio: {{ ticket.updated_at | date:'short' }}</p>
     </div>
 </div>
 
 <!-- ticket answers -->
-<div *ngIf="responses && responses.length > 0 && !loading" class="w-full max-w-5xl mx-auto my-5">
+<div *ngIf="responses && responses.length > 0 && !loading" class="w-full max-w-5xl mx-auto">
     <ul>
-        <li *ngFor="let response of responses" class="border border-gray-200 rounded-2xl p-4 bg-white">
+        <li *ngFor="let response of responses" class="border border-gray-200 rounded-2xl p-4 bg-white mt-5">
             <div class="justify-between flex items-center mb-2">
                 <p class="font-semibold">{{ response.user?.name }}</p>
                 <p class="text-base whitespace-pre-line text-gray-500">{{ response.created_at | date:'short' }}</p>
@@ -29,7 +29,7 @@
     </ul>
 </div>
 
-<div *ngIf="!loading" class="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-5xl mx-auto">
+<div *ngIf="!loading" class="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-5xl mx-auto mt-5">
     <!-- user answer -->
     <div class="mb-2">
         <fieldset>
