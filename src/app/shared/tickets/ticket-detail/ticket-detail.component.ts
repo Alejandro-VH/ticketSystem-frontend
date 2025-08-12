@@ -22,7 +22,7 @@ export class TicketDetailComponent {
   loading: boolean = true;
   fetchingTickets: boolean = true;
   fetchingResponses: boolean = true;
-
+  is_support: boolean = false;
   constructor(
     private ticketService: TicketService,
     activatedRoute: ActivatedRoute,
@@ -40,6 +40,7 @@ export class TicketDetailComponent {
         this.ticket =
           response.data.length > 0 ? response.data[0] : ({} as Ticket);
         this.fetchingTickets = false;
+        this.is_support = response.data[0].is_support;
         this.checkIfReady();
       },
       error: (err: any) => {
