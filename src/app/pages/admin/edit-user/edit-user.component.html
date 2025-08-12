@@ -6,11 +6,11 @@
     <div class="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-3xl mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-4 text-center">Editar usuario</h1>
         <form #userForm="ngForm" (ngSubmit)="onSubmit()">
-            <fieldset class="mb-4">
+            <fieldset>
                 <label for="title" class="block text-base font-medium">Nombre</label>
                 <input type="text" [(ngModel)]="name" id="name" name="name" required minlength="3" maxlength="40" #nameRef="ngModel"
                     class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
-                                <p class="text-red-500 text-sm min-h-[1.25rem]">
+                <p class="text-red-500 text-sm min-h-[1.25rem]">
                     <span *ngIf="nameRef.touched && nameRef.errors">
                         <span *ngIf="nameRef.errors?.['required']">El nombre es obligatorio</span>
                         <span *ngIf="nameRef.errors?.['minlength']">Debe tener al menos 3 caracteres</span>
