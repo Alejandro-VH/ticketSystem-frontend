@@ -10,7 +10,7 @@
             <p class="text-gray-500">{{ ticket.created_at | date:'short' }}</p>
         </div>
         <h1 class="text-2xl font-bold break-words">{{ ticket.title }}</h1>
-        <p class="text-base my-4 break-words">{{ ticket.description }}</p>
+        <p class="text-base my-4 break-words whitespace-pre-line">{{ ticket.description }}</p>
         <p class="text-gray-500 text-sm">Estado: {{ getStatusText(ticket.status) }}</p>
         <p class="text-gray-500 text-sm">Último cambio: {{ ticket.updated_at | date:'short' }}</p>
     </div>
@@ -26,7 +26,7 @@
                     Soporte</span></p>
                 <p class="text-base whitespace-pre-line text-gray-500">{{ response.created_at | date:'short' }}</p>
             </div>
-            <p class="text-gray-700 whitespace-pre-line">{{ response.message }}</p>
+            <p class="text-gray-700 whitespace-pre-line break-words">{{ response.message }}</p>
         </li>
     </ul>
 </div>
