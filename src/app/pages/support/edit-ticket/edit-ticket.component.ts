@@ -17,6 +17,7 @@ export class EditTicketComponent {
   title: string = '';
   description: string = '';
   priority: string = 'low';
+  status: string = 'open';
   error: string = '';
   loading: boolean = true;
 
@@ -34,6 +35,7 @@ export class EditTicketComponent {
         this.title = ticket.data[0].title;
         this.description = ticket.data[0].description;
         this.priority = ticket.data[0].priority;
+        this.status = ticket.data[0].status;
         this.loading = false;
       },
       error: (err: any) => {
@@ -55,6 +57,7 @@ export class EditTicketComponent {
         title: this.title,
         description: this.description,
         priority: this.priority,
+        status: this.status,
       })
       .subscribe({
         next: () => this.router.navigate(['/home']),

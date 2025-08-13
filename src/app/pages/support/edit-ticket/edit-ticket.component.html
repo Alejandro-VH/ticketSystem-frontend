@@ -6,7 +6,7 @@
     <div class="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-3xl mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-4 text-center">Editar Ticket</h1>
         <form #ticketForm="ngForm" (ngSubmit)="onSubmit()">
-            <div class="mb-4">
+            <fieldset>
                 <label for="title" class="block text-base font-medium">Título</label>
                 <input type="text" #titleRef="ngModel" [(ngModel)]="title" id="title" name="title" required minlength="3" maxlength="60"
                     class="border rounded p-2 w-full text-base focus:outline-none focus:ring-0">
@@ -15,8 +15,8 @@
                     <span *ngIf="titleRef.touched && titleRef.errors?.['minlength']">Debe tener al menos 3 caracteres</span>
                     <span *ngIf="titleRef.touched && titleRef.errors?.['maxlength']">Debe tener como máximo 60 caracteres</span>
                 </p>
-            </div>
-            <div class="mb-4">
+            </fieldset>
+            <fieldset>
                 <label for="description" class="block text-base font-medium">Descripción</label>
                 <textarea #descriptionRef="ngModel" [(ngModel)]="description" rows="5" cols="" id="description"
                     name="description" required minlength="5" maxlength="1000"
@@ -27,15 +27,23 @@
                     <span *ngIf="descriptionRef.touched && descriptionRef.errors?.['minlength']">Debe tener al menos 5 caracteres</span>
                     <span *ngIf="descriptionRef.touched && descriptionRef.errors?.['maxlength']">Debe tener como máximo 1000 caracteres</span>
                 </p>
-            </div>
-            <div class="mb-4">
+            </fieldset>
+            <fieldset>
                 <label for="priority" class="block text-base font-medium">Prioridad</label>
                 <select id="priority" [(ngModel)]="priority" name="priority" required class="border rounded mb-4 p-2">
                     <option value="low" selected>Baja</option>
                     <option value="medium">Media</option>
                     <option value="high">Alta</option>
                 </select>
-            </div>
+            </fieldset>
+            <fieldset class="mb-2">
+                <label for="status" class="block text-base font-medium">Estado</label>
+                <select id="status" [(ngModel)]="status" name="status" required class="border rounded mb-4 p-2">
+                    <option value="open" selected>Abierto</option>
+                    <option value="in_progress">En Progreso</option>
+                    <option value="closed">Cerrado</option>
+                </select>
+            </fieldset>
             <div class="mb-2">
                 <button [routerLink]="['/ticket/edit/', id]" type="submit" [disabled]="ticketForm.invalid"
                     class="bg-blue-500 text-white px-3 py-1 rounded hoover:bg-blue-600 w-full">Editar
