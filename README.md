@@ -75,6 +75,9 @@ _Vista principal para usuarios_
 _Formulario para crear tickets_
 ![Crear ticket](images/createTicket.png)  
 
+_Detalles del ticket_
+![Ver ticket](images/ticketDetail.png)  
+
 _Vista principal para equipo de soporte_
 ![Dashboard soporte](images/supportDashboard.png)  
 
