@@ -1,7 +1,7 @@
 <!-- Mensajes de carga -->
 <div *ngIf="loading" class="text-center text-gray-600 my-4 text-sm">Cargando usuarios...</div>
 
-<div class="px-100 py-4" *ngIf="!loading && users.length > 0">
+<div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" *ngIf="!loading && users.length > 0">
     <h1 class="text-2xl font-bold">Panel de Administración</h1>
     <p class="text-gray-500">Bienvenido {{ userName }}. Aquí puedes gestionar los usuarios.</p>
 
@@ -27,7 +27,7 @@
 </div>
 
 <!-- tabla de usuarios -->
-<div class="px-100" *ngIf="!loading && users.length > 0">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" *ngIf="!loading && users.length > 0">
     <table class=" bg-white shadow-lg w-full border border-gray-200">
         <tr class="bg-gray-100">
             <th class="text-sm font-medium text-gray-600 py-3 text-left px-6">Nombre</th>
