@@ -41,6 +41,15 @@ ng serve
 http://localhost:4200/
 ```
 
+## 👥 Usuarios de prueba
+
+| Rol | Correo   | Contraseña  |
+|:----------|:--------:|---------:|
+| Admin | admin@ticket.cl | admin123  |
+| Soporte | soporte@ticket.cl | soporte123  |
+| Cliente | cliente@gmail.com | cliente123  |
+| Cliente | cliente2@gmail.com | cliente123  |
+
 ## 📂 Estructura del proyecto
 ```
 src/
