@@ -4,7 +4,7 @@ Este proyecto corresponde al frontend de un Sistema de gestión de Tickets desar
 
 ## 🧪 Tecnologías usadas
 - Angular 17.3.17
-- TailwindCSS 4.1
+- TailwindCSS 3.4.17
 - TypeScript
 - HTML
 
