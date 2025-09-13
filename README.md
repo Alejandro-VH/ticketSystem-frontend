@@ -101,7 +101,7 @@ _Formulario para editar usuarios_
 
 ## 🔮 Futuras mejoras
 - [ ] Realizar una demo online
-- [ X ] Corregir problemas visuales en dispositivos móviles
+- [X] Corregir problemas visuales en dispositivos móviles
 
 ## 👤 Autor
 #### Alejandro Villarroel
