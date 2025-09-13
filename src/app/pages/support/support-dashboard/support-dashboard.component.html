@@ -45,7 +45,7 @@
             <td class="px-6 py-2 text-sm text-gray-800 rounded" [ngClass]="getStatusClass(ticket.status)">{{ getStatusText(ticket.status) }}</td>
             <td class="px-6 py-2 text-sm text-gray-800">{{ ticket.created_at| date }}</td>
             <td class="px-6 py-2 text-sm text-gray-800">{{ getPriorityText(ticket.priority) }}</td>
-            <td class="px-6 py-2 text-sm text-gray-800">
+            <td class="px-6 py-2 text-sm text-gray-800 flex items-center gap-1">
                 <button [routerLink]="['/ticket/edit', ticket.id]" class="bg-amber-300 hover:bg-amber-400 text-white px-3 py-1 rounded transition-colors mr-5">Editar</button>
                 <button [routerLink]="['/ticket', ticket.id]"
                     class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors">

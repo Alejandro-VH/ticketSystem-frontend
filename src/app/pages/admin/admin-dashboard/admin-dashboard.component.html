@@ -39,7 +39,7 @@
             <td class="px-6 py-2 text-sm text-gray-800">{{ user.name }}</td>
             <td class="px-6 py-2 text-sm text-gray-800">{{ user.email }}</td>
             <td class="px-6 py-2 text-sm text-gray-800">{{ getRoleText(user.role_id) }}</td>
-            <td class="px-6 py-2 text-sm text-gray-800">
+            <td class="px-6 py-2 text-sm text-gray-800 flex items-center gap-1">
                 <button [routerLink]="['/user/edit', user.id]" class="bg-amber-300 hover:bg-amber-400 text-white px-3 py-1 rounded transition-colors mr-5">Editar</button>
                 <button class="rounded text-white px-3 py-1 transition-colors" [ngClass]="{ 'bg-green-500 hover:bg-green-600': user.is_enabled,
                     'bg-red-500 hover:bg-red-600': !user.is_enabled}"
