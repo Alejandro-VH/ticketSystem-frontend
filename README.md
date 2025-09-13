@@ -101,8 +101,7 @@ _Formulario para editar usuarios_
 
 ## 🔮 Futuras mejoras
 - [ ] Realizar una demo online
-- [ ] Organizar de mejor manera las tablas que contienen usuarios y tickets
-- [ ] Agregar paginación a las tablas
+- [ X ] Corregir problemas visuales en dispositivos móviles
 
 ## 👤 Autor
 #### Alejandro Villarroel
